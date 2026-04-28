@@ -1,0 +1,16 @@
+{
+  "name": "perguntas_e_respostas",
+  "version": "1.0.0",
+  "description": "Uma plataforma de perguntas e respostas no estilo Yahoo respostas",
+  "license": "ISC",
+  "author": "Victor Sousa",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "ejs": "^5.0.2",
+    "express": "^5.2.1"
+  }
+}
