@@ -11,6 +11,10 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
-app.listen(3000, () => {
+app.get('/perguntar', (req, res) => {
+  res.render('perguntar');
+});
+
+app.listen(4000, () => {
   console.log('App rodando!');
 });
