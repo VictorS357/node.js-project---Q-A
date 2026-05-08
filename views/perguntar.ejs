@@ -3,13 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/styles/style.css">
   <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/styles/style.css">
   <title>Guia Perguntas</title>
 </head>
 <body>
-  <div class="container">
-
+  <nav class="navbar navbar-light bg-dark">
+    <a class="navbar-brand" href="/">
+      <img src="../img/guia.png">
+    </a>
+  </nav>
+  <div class="container" id="formulario-pergunta">
     <div class="card">
       <div class="card-header">
         <h3>Realizar Pergunta</h3>
@@ -20,7 +24,7 @@
           <input type="text" placeholder="Título" class="form-control">
           <br><label>Descrição</label>
           <textarea placeholder="Descreva sua pergunta aqui" class="form-control"></textarea>
-          <br><button class="btn btn-success">Perguntar</button>
+          <br><button class="btn btn-dark">Perguntar</button>
         </form>
       </div>
     </div>
