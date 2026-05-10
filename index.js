@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const connection = require('./database/database'); //importei a conexão criada com a database
-const perguntaModel = require('./database/Pergunta'); //importei a tabela criada com o model
+const Pergunta = require('./database/Pergunta'); //importei a tabela criada com o model
 // Database
 
 connection
@@ -32,10 +32,15 @@ app.get('/perguntar', (req, res) => {
 });
 
 app.post('/salvarpergunta', (req, res) => {
-  const titulo = req.body.titulo; //Body parser permite utilizar o objeto body para pegar os dados da página pelo atributo 'name' no html
+  const titulo = req.body.titulo; //Primeiro eu recebo os dados do formulário e salvo em variáveis
   const descricao = req.body.descricao;
-
-  res.send(`Formulário recebido! Titulo: ${titulo} Descricao: ${descricao}`);
+  //Body parser permite utilizar o objeto body para pegar os dados da página pelo atributo 'name' no html
+  Pergunta.create({ //Depois eu passo os dados do formulário para a tabela já criada
+    titulo,
+    descricao
+  }).then(() => {
+    res.redirect('/'); //Depois eu redireciono o usuário para a minha página principal
+  })
 });
 
 app.listen(4000, () => {

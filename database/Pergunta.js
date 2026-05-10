@@ -19,3 +19,4 @@ Pergunta.sync({force: false}).then(() => {
 }); 
 //sincroniza a tabela criada aqui com o banco de dados
 //force: false faz com que não force a criação da tabela caso ela já exista
+module.exports = Pergunta;
