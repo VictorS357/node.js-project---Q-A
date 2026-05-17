@@ -24,9 +24,11 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 // Rotas
 app.get('/', (req, res) => {
-  Perguntas.findAll({ raw: true }).then(perguntas => { //esse json retira as informações adicionais sobre as perguntas, exibindo assim, apenas as perguntas
+  Perguntas.findAll({ raw: true, order: [ //isso permite trocar a ordem de exibição dos itens
+    ['id', 'DESC'] // ASC = Crescente || DESC = Descrescente
+  ] }).then(perguntas => { //esse json retira as informações adicionais sobre as perguntas, exibindo assim, apenas as perguntas
     res.render('index', {
-      perguntas
+      perguntas: perguntas
     });
   });
   
@@ -41,11 +43,24 @@ app.post('/salvarpergunta', (req, res) => {
   const descricao = req.body.descricao;
   //Body parser permite utilizar o objeto body para pegar os dados da página pelo atributo 'name' no html
   Perguntas.create({ //Depois eu passo os dados do formulário para a tabela já criada
-    titulo,
-    descricao
+    titulo: titulo,
+    descricao: descricao
   }).then(() => {
     res.redirect('/'); //Depois eu redireciono o usuário para a minha página principal
   })
+});
+
+app.get('/pergunta/:id', (req, res) => {
+  const id = req.params.id;
+  Perguntas.findOne({
+    where: {id: id}
+  }).then(pergunta => {
+    if (pergunta != undefined) { //pergunta encontrada
+      res.render('pergunta');
+    } else {
+      res.redirect('/');
+    }
+  });
 });
 
 app.listen(4000, () => {
