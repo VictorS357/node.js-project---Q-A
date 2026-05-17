@@ -40,7 +40,7 @@ app.post('/salvarpergunta', (req, res) => {
   const titulo = req.body.titulo; //Primeiro eu recebo os dados do formulário e salvo em variáveis
   const descricao = req.body.descricao;
   //Body parser permite utilizar o objeto body para pegar os dados da página pelo atributo 'name' no html
-  Pergunta.create({ //Depois eu passo os dados do formulário para a tabela já criada
+  Perguntas.create({ //Depois eu passo os dados do formulário para a tabela já criada
     titulo,
     descricao
   }).then(() => {
