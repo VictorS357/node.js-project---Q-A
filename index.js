@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const connection = require('./database/database'); //importei a conexão criada com a database
-const Pergunta = require('./database/Pergunta'); //importei a tabela criada com o model
+const Perguntas = require('./database/Pergunta'); //importei a tabela criada com o model
 // Database
 
 connection
@@ -24,7 +24,12 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 // Rotas
 app.get('/', (req, res) => {
-  res.render('index');
+  Perguntas.findAll({ raw: true }).then(perguntas => { //esse json retira as informações adicionais sobre as perguntas, exibindo assim, apenas as perguntas
+    res.render('index', {
+      perguntas
+    });
+  });
+  
 });
 
 app.get('/perguntar', (req, res) => {
